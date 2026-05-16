@@ -6,6 +6,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Klocman;
 using Klocman.Binding.Settings;
 using Klocman.IO;
 
@@ -33,7 +34,9 @@ namespace BulkCrapUninstaller.Controls
                 sb.BindControl(checkBoxShutdown, settings => settings.UninstallPreventShutdown, this);
         
             checkBoxRestorePoint.Enabled = SysRestore.SysRestoreAvailable();
-            sb.BindControl(checkBoxRestorePoint, settings => settings.CreateRestorePoint, this);
+            sb.Bind(x => checkBoxRestorePoint.Checked = x != YesNoAsk.No, () => checkBoxRestorePoint.Checked &&  sb.Settings.MessagesRestorePoints != YesNoAsk.No ? sb.Settings.MessagesRestorePoints : checkBoxRestorePoint.Checked ? YesNoAsk.Ask : YesNoAsk.No,
+                    eh => checkBoxRestorePoint.CheckedChanged += eh, eh => checkBoxRestorePoint.CheckedChanged -= eh,
+                    settings => settings.MessagesRestorePoints, this);
         
             sb.BindControl(checkBoxConcurrent, settings => settings.UninstallConcurrency, this);
         
@@ -70,7 +73,7 @@ namespace BulkCrapUninstaller.Controls
 
         private void OnMaxCountChanged(object sender, SettingChangedEventArgs<int> args)
         {
-            numericUpDownMaxConcurrent.Value = args.NewValue;
+            numericUpDownMaxConcurrent.Value = Math.Clamp(args.NewValue, numericUpDownMaxConcurrent.Minimum, numericUpDownMaxConcurrent.Maximum);
         }
     }
 }

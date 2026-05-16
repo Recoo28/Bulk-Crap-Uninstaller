@@ -25,7 +25,17 @@ namespace BulkCrapUninstaller.Forms
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = AssemblyCompany;
             labelis64.Text += ProcessTools.Is64BitProcess.ToYesNo();
-            labelArchitecture.Text += Assembly.GetExecutingAssembly().GetName().ProcessorArchitecture;
+            Assembly.GetExecutingAssembly().Modules.First().GetPEKind(out var pekind, out var ifmachine);
+            string machine;
+            if (Enum.IsDefined<ImageFileMachine>(ifmachine))
+            {
+                machine = Enum.GetName<ImageFileMachine>(ifmachine);
+            } else // Work around .NET 6 not having WoA64 definitions in GetPEKind
+
+            {
+                machine = "ARM64";
+            }
+                labelArchitecture.Text += machine;
             labelPortable.Text += Program.IsInstalled.ToYesNo();
 
             var translationCredits = new[]
@@ -73,8 +83,14 @@ namespace BulkCrapUninstaller.Forms
                 // Slovenian
                 new {culture = CultureInfo.GetCultureInfo("sl"), translator = "Jadran Rudec"},
 
+                // Swedish
+                new {culture = CultureInfo.GetCultureInfo("sv"), translator = "@glecas"},
+
                 // Turkish
-                new {culture = CultureInfo.GetCultureInfo("tr"), translator = "Harun Güngör"},
+                new {culture = CultureInfo.GetCultureInfo("tr"), translator = "Harun Güngör, @DogancanYr"},
+
+                // Vietnamese
+                new {culture = CultureInfo.GetCultureInfo("vi"), translator = "wanwanvxt / Vũ Xuân Trường"},
                 
                 // Simplified Chinese
                 new {culture = CultureInfo.GetCultureInfo("zh-Hans"), translator = "cc713"},

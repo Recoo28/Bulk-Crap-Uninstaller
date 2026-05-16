@@ -175,7 +175,7 @@ BCU attendra la fin de la commande courante avant d'exécuter la suivante.</valu
     <value>Divers</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Réglages de BCUninstaller</value>
+    <value>Réglages de Bulk Crap Uninstaller</value>
   </data>
   <data name="tabPageFolders.Text" xml:space="preserve">
     <value>Dossiers</value>
@@ -200,7 +200,7 @@ Utilisez des chemins complets de dossiers, un chemin par ligne. Les chemins inva
     <value>Toujours montrer les résidus avec faible confiance</value>
   </data>
   <data name="checkBoxNeverFeedback.Text" xml:space="preserve">
-    <value>Ne jamais demander les impressions ou  de l'aide</value>
+    <value>Ne jamais demander les retours ou de l'aide</value>
   </data>
   <data name="checkBoxScanSteam.Text" xml:space="preserve">
     <value>Steam</value>
@@ -209,7 +209,7 @@ Utilisez des chemins complets de dossiers, un chemin par ligne. Les chemins inva
     <value>Registre (il est recommandé de laisser activé) </value>
   </data>
   <data name="checkBoxScanDrives.Text" xml:space="preserve">
-    <value>Lecteurs (détecte les apps non enregistrées)</value>
+    <value>Lecteurs (détecte les applis non enregistrées)</value>
   </data>
   <data name="checkBoxPreDefined.Text" xml:space="preserve">
     <value>Basé sur des règles pré-définies</value>
@@ -224,7 +224,7 @@ Utilisez des chemins complets de dossiers, un chemin par ligne. Les chemins inva
     <value>Détection</value>
   </data>
   <data name="checkBoxScanStoreApps.Text" xml:space="preserve">
-    <value>Apps du Windows Store</value>
+    <value>Applis du Windows Store</value>
   </data>
   <data name="checkBoxScanWinFeatures.Text" xml:space="preserve">
     <value>Fonctionnalités Windows</value>
@@ -245,13 +245,13 @@ Utilisez des chemins complets de dossiers, un chemin par ligne. Les chemins inva
     <value>Ne jamais demander pour créer</value>
   </data>
   <data name="radioButtonBackupAuto.Text" xml:space="preserve">
-    <value>Créer automatiquement dans le dossier:</value>
+    <value>Créer automatiquement dans le dossier :</value>
   </data>
   <data name="groupBoxBackup.Text" xml:space="preserve">
     <value>Sauvegarder avant la suppression des résidus</value>
   </data>
   <data name="groupBoxLanguage.Text" xml:space="preserve">
-    <value>Langue</value>
+    <value>Langage</value>
   </data>
   <data name="tabPageInterface.Text" xml:space="preserve">
     <value>Interface</value>

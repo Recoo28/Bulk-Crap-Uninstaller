@@ -41,7 +41,7 @@ namespace UninstallTools.Uninstaller
         /// </summary>
         /// <param name="targets">Uninstallers to run.</param>
         /// <param name="configuration">How the uninstallers should be ran.</param>
-        public static BulkUninstallTask CreateBulkUninstallTask(IList<BulkUninstallEntry> targets,
+        public static BulkUninstallTask CreateBulkUninstallTask(IReadOnlyList<BulkUninstallEntry> targets,
             BulkUninstallConfiguration configuration)
         {
             return new BulkUninstallTask(targets, configuration);
@@ -70,6 +70,7 @@ namespace UninstallTools.Uninstaller
         /// <exception cref="FormatException">Exception while decoding or attempting to run the uninstaller command. </exception>
         public static Process RunUninstaller(this ApplicationUninstallerEntry entry, bool silentIfAvailable, bool simulate, bool safeMode = false)
         {
+            if (entry == null) throw new ArgumentNullException(nameof(entry));
             try
             {
                 ProcessStartInfo startInfo = null;

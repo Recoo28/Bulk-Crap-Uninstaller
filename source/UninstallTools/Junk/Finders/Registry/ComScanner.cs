@@ -39,7 +39,7 @@ namespace UninstallTools.Junk.Finders.Registry
             if (UninstallToolsGlobalConfig.IsSystemDirectory(target.InstallLocation))
                 yield break;
 
-            foreach (var comEntry in _comEntries.Where(x => PathTools.SubPathIsInsideBasePath(target.InstallLocation, x.FullFilename, true)))
+            foreach (var comEntry in _comEntries.Where(x => PathTools.SubPathIsInsideBasePath(target.InstallLocation, x.FullFilename, true, true)))
             {
                 foreach (var interfacePath in comEntry.InterfaceNames)
                 {
@@ -270,6 +270,8 @@ namespace UninstallTools.Junk.Finders.Registry
 
         private static bool IsSystemGuid(string guid)
         {
+            // Treat missing/invalid GUID text as non-target so callers can safely skip it.
+            if (string.IsNullOrEmpty(guid)) return true;
             return guid.Contains("-0000-") || guid[0] != '{';
         }
 

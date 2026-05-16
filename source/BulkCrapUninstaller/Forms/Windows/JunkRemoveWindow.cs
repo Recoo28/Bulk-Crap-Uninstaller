@@ -142,12 +142,21 @@ namespace BulkCrapUninstaller.Forms
         private void CreateBackup(string backupPath)
         {
             var dir = Path.Combine(backupPath, GetUniqueBackupName());
+            if (string.IsNullOrEmpty(backupPath) || !Directory.Exists(backupPath))
+            {
+                PremadeDialogs.GenericError($"The parent directory does not exist:\n{backupPath}\n\nPlease choose a different backup location.");
+                throw new OperationCanceledException();
+            }
             try
             {
                 Directory.CreateDirectory(dir);
             }
             catch (Exception ex)
             {
+                // https://github.com/dotnet/runtime/issues/24783
+                if (ex is FileNotFoundException)
+                    ex = new UnauthorizedAccessException("You do not have access to this path, choose a different path. If you use controlled folders, try turning them off or adding BCU to exclusions.", ex);
+
                 PremadeDialogs.GenericError(ex);
                 throw new OperationCanceledException();
             }
@@ -363,7 +372,7 @@ namespace BulkCrapUninstaller.Forms
             if (failed.Any())
             {
                 failed.Sort();
-                
+
                 // Prevent the dialog from getting too large
                 if (failed.Count > 6) failed = failed.Take(5).Concat(new[] { "... (check log for the full list)" }).ToList();
 

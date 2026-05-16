@@ -4,6 +4,7 @@
 */
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using BulkCrapUninstaller.Controls;
@@ -34,6 +35,7 @@ namespace BulkCrapUninstaller.Forms
 
         public void UpdatePosition(Control owner)
         {
+            if (owner == null) throw new ArgumentNullException(nameof(owner));
             if (!owner.Visible || owner.IsDisposed || owner.Disposing) return;
 
             var local = new Point(owner.Width - Width - 30, owner.Height - Height - 30);
@@ -62,14 +64,14 @@ namespace BulkCrapUninstaller.Forms
                 if (Math.Abs(Opacity - .3) < .03)
                     opacityResetTimer.Stop();
                 else
-                    Opacity = OpacityLerp(.3);
+                    try { Opacity = OpacityLerp(.3); } catch (Win32Exception) { }
             }
             else
             {
                 if (Math.Abs(Opacity - 1) < .03)
                     opacityResetTimer.Stop();
                 else
-                    Opacity = OpacityLerp(1);
+                    try { Opacity = OpacityLerp(1); } catch (Win32Exception) { }
             }
         }
 

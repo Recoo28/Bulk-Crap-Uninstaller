@@ -124,7 +124,7 @@
     <value>Application non enregistrée</value>
   </data>
   <data name="labelInvalid.Text" xml:space="preserve">
-    <value>Désinstalleur invalide</value>
+    <value>Désinstalleur manquant</value>
   </data>
   <data name="labelUnverified.Text" xml:space="preserve">
     <value>Certificat non vérifié</value>
@@ -136,6 +136,6 @@
     <value>Légende des couleurs</value>
   </data>
   <data name="labelStoreApp.Text" xml:space="preserve">
-    <value>App du Windows Store</value>
+    <value>Appli du Windows Store</value>
   </data>
 </root>
